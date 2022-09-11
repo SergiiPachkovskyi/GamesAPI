@@ -20,7 +20,7 @@ async def connect_to_game(game_id: int, session: AsyncSession = Depends(get_asyn
         raise HTTPException(status_code=404, detail="Game not found")
 
 
-@router.post("/api/disconnect/{game_id}")
+@router.delete("/api/disconnect/{game_id}")
 async def disconnect_from_game(game_id: int, session: AsyncSession = Depends(get_async_session),
                                user: User = Depends(current_active_user)):
     result = await service.disconnect_from_game(game_id, session, user)

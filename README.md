@@ -15,7 +15,7 @@ API for games management
 | *POST*   | ```/api/games```                | create a game                     |
 | *DELETE* | ```/api/games/{pk}```           | delete game                       |
 | *POST*   | ```/api/connect/{game_id}```    | connect to game                   |
-| *POST*   | ```/api/disconnect/{game_id}``` | disconnect from game              |
+| *DELETE* | ```/api/disconnect/{game_id}``` | disconnect from game              |
 | *GET*    | ```/api/get_games```            | get games and users               |
 | *GET*    | ```/api/get_me```               | get indo about user and his games |
 
