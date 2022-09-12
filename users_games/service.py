@@ -1,4 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import query
 
 from games.models import Game
 from users.models import User
@@ -17,20 +18,18 @@ async def connect_to_game(game_id: int, session: AsyncSession, user: User):
 
 
 async def disconnect_from_game(game_id: int, session: AsyncSession, user: User):
-    user_game_id = await session.execute(f"SELECT id from users_games WHERE player = '{user.id}' and game = {game_id}")
-
-    if user_game_id is not None:
-        for current_id in user_game_id:
+    select = query.Query(UserGame, session).filter(UserGame.player == user.id).filter(UserGame.game == game_id)
+    result = await session.execute(select)
+    for res in result:
+        for user_game in res:
             try:
-                user_game = await session.get(UserGame, current_id)
                 await session.delete(user_game)
                 await session.commit()
                 return True
             except Exception:
                 await session.rollback()
                 return False
-    else:
-        return None
+    return None
 
 
 async def get_users_games(session: AsyncSession):

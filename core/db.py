@@ -9,9 +9,9 @@ from users.models import User
 from core.base import Base
 
 # without docker
-# SQLALCHEMY_DATABASE_URL = "postgresql+asyncpg://postgres:admin@localhost/GamesAPI"
+SQLALCHEMY_DATABASE_URL = "postgresql+asyncpg://postgres:admin@localhost/GamesAPI"
 # with docker
-SQLALCHEMY_DATABASE_URL = "postgresql+asyncpg://postgres:admin@db:5432/GamesAPI"
+# SQLALCHEMY_DATABASE_URL = "postgresql+asyncpg://postgres:admin@db:5432/GamesAPI"
 
 engine = create_async_engine(SQLALCHEMY_DATABASE_URL)
 async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
