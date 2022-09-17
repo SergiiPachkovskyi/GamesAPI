@@ -7,7 +7,7 @@ from . import service
 from core.auth import current_active_user
 from users.models import User
 from core.db import get_async_session
-from .schemas import GameCreate, GameList
+from .schemas import GameCreate, GameRead
 
 router = APIRouter()
 
@@ -18,7 +18,7 @@ async def create_game(item: GameCreate, session: AsyncSession = Depends(get_asyn
     return await service.create_game(session, item)
 
 
-@router.get("/api/games", response_model=List[GameList])
+@router.get("/api/games", response_model=List[GameRead])
 async def get_games(session: AsyncSession = Depends(get_async_session), user: User = Depends(current_active_user)):
     return await service.get_games(session)
 

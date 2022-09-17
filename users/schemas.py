@@ -15,4 +15,10 @@ class UserRead(schemas.BaseUser[uuid.UUID]):
 
 
 class UserUpdate(schemas.BaseUserUpdate):
+    name: str
     age: int
+
+
+class UserShortInfo(BaseModel):
+    id: uuid.UUID
+    name: str

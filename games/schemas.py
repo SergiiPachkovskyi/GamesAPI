@@ -12,8 +12,7 @@ class GameCreate(GameBase):
     pass
 
 
-class GameList(GameBase):
+class GameRead(GameBase):
     id: int
-
 
 
